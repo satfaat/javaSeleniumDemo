@@ -1,4 +1,4 @@
-package dev.demo.core.driver;
+package dev.demo.core;
 
 import dev.demo.utils.WaitUtils;
 import org.openqa.selenium.By;

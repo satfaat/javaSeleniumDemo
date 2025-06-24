@@ -1,6 +1,6 @@
 package dev.demo.pages;
 
-import dev.demo.core.driver.BasePage;
+import dev.demo.core.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
