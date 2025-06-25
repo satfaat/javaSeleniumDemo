@@ -5,7 +5,7 @@ import java.time.Duration;
 public class FrameworkConstants {
     public static final String CONFIG_FILE = "config.properties";
     public static final String TEST_DATA_PATH = "src/test/resources/testdata/";
-    public static final String SCREENSHOT_PATH = "target/screenshots/";
+    public static final String SCREENSHOT_PATH = "build/screenshots/";
     public static final String REPORT_PATH = "target/reports/";
     public static final int IMPLICIT_WAIT = Integer.parseInt(System.getProperty("implicitWait", "10"));
     public static final int EXPLICIT_WAIT = Integer.parseInt(System.getProperty("explicitWait", "10"));

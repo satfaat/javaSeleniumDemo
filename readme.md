@@ -21,6 +21,9 @@ mvn test -Dtest=MyTestClass#!myExcludedMethod
 
 Run with parameters:
 `./gradlew test -Dbrowser=firefox -Dheadless=true -DbaseUrl=https://prod-site.com`
+```shell
+./gradlew test --tests "dev.demo.ui.ShadowRootTest" -Dbrowser=firefox
+```
 
 Generate Allure report:
 `./gradlew allureReport then ./gradlew openAllureReport`

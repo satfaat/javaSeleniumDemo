@@ -1,4 +1,4 @@
-package dev.demo;
+package dev.demo.ui;
 
 import dev.demo.base.BaseTest;
 import dev.demo.config.ConfTest;

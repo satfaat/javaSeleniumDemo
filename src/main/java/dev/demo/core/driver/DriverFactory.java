@@ -1,6 +1,5 @@
 package dev.demo.core.driver;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -10,35 +9,39 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class DriverFactory {
-    private DriverFactory() {}
+    private DriverFactory() {
+    }
 
     public static WebDriver createDriver() {
-        String browser = System.getProperty("browser", "chrome");
+        // Read browser from system property, default to CHROME
+        String browserName = System.getProperty("browser", "chrome");
+        Browser browser;
+        try {
+            browser = Browser.valueOf(browserName.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Unsupported browser specified: " + browserName);
+        }
         boolean headless = Boolean.parseBoolean(System.getProperty("headless", "false"));
 
-        switch (browser.toLowerCase()) {
-            case "chrome":
-                WebDriverManager.chromedriver().setup();
+        switch (browser) {
+            case CHROME:
                 ChromeOptions chromeOptions = new ChromeOptions();
                 if (headless) chromeOptions.addArguments("--headless=new");
                 chromeOptions.addArguments("--start-maximized");
                 chromeOptions.addArguments("--remote-allow-origins=*");
                 return new ChromeDriver(chromeOptions);
 
-            case "firefox":
-                WebDriverManager.firefoxdriver().setup();
+            case FIREFOX:
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 if (headless) firefoxOptions.addArguments("--headless");
                 return new FirefoxDriver(firefoxOptions);
 
-            case "edge":
-                WebDriverManager.edgedriver().setup();
+            case EDGE:
                 EdgeOptions edgeOptions = new EdgeOptions();
                 if (headless) edgeOptions.addArguments("--headless");
+                edgeOptions.addArguments("--start-maximized");
                 return new EdgeDriver(edgeOptions);
-
-            default:
-                throw new IllegalArgumentException("Unsupported browser: " + browser);
         }
+        throw new IllegalStateException("Browser enum was valid but not handled in switch: " + browser);
     }
 }
