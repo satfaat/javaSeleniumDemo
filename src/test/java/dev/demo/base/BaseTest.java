@@ -1,41 +1,33 @@
 package dev.demo.base;
 
-import dev.demo.core.driver.DriverFactory;
-import dev.demo.utils.ScreenshotUtils;
+import dev.demo.core.driver.DriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
-import org.openqa.selenium.WebDriver;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static dev.demo.config.FrameworkConstants.*;
+@ExtendWith(TestWatcherExtension.class)
+public abstract class BaseTest {
 
-public class BaseTest {
-
-    protected final Logger logger = LoggerFactory.getLogger(getClass());
-    protected WebDriver driver;
+    // Logger is now static and final
+    private static final Logger logger = LoggerFactory.getLogger(BaseTest.class);
 
     @BeforeEach
     public void setUp(TestInfo testInfo) {
-        driver = DriverFactory.createDriver();
+        DriverManager.getDriver();
         logger.info("Starting test: {}", testInfo.getDisplayName());
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(getDuration(IMPLICIT_WAIT));
-        driver.manage().timeouts().pageLoadTimeout(getDuration(PAGE_LOAD_TIMEOUT));
+        ;
     }
 
     @AfterEach
     public void tearDown(TestInfo testInfo) {
-        if (driver != null) {
-            ScreenshotUtils.takeScreenshot(driver, testInfo.getDisplayName());
-            driver.quit();
-            driver = null;
-            logger.info("Finished test: {}", testInfo.getDisplayName());
-        }
+        DriverManager.quitDriver(testInfo);
+        logger.info("Finished test: {}", testInfo.getDisplayName());
     }
 
     protected void navigateTo(String url) {
-        driver.get(url);
+        DriverManager.getDriver().get(url);
     }
 }

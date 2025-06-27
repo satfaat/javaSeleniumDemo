@@ -10,11 +10,10 @@ public class ShadowRootTest extends BaseTest {
     @Test
     public void testShadowRoot() throws InterruptedException {
         navigateTo(Urls.LUFTHANSA.getPath());
-        ShadowDomPage shadowDomPage = new ShadowDomPage(driver);
+        ShadowDomPage shadowDomPage = new ShadowDomPage();
 
         Thread.sleep(3000);
         shadowDomPage.privacyAgree();
-        Thread.sleep(5000);
         shadowDomPage.clickShadowDomButton();
     }
 }

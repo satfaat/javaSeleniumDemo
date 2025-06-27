@@ -19,8 +19,8 @@ public class ShadowDomPage extends BasePage {
             ".querySelector('div.panel > .header-structure > .header-actions > maui-icon-link').shadowRoot" +
             ".querySelector('button')";
 
-    public ShadowDomPage(WebDriver driver) {
-        super(driver);
+    public ShadowDomPage() {
+        super();
     }
 
 

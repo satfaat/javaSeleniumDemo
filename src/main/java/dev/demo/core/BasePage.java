@@ -1,5 +1,6 @@
 package dev.demo.core;
 
+import dev.demo.core.driver.DriverManager;
 import dev.demo.utils.WaitUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,11 +10,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
     protected WebDriver driver;
+    protected WebDriverWait wait;
 
-    private final WebDriverWait wait = WaitUtils.createWait(driver);
-
-    public BasePage(WebDriver driver) {
-        this.driver = driver;
+    public BasePage() {
+        this.driver = DriverManager.getDriver();
+        this.wait = WaitUtils.createWait(driver);
         PageFactory.initElements(driver, this);
     }
 

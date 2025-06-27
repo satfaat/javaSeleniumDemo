@@ -13,7 +13,7 @@ class LoginTest extends BaseTest {
     @Test
     void successfulLoginTest() {
         navigateTo(FrameworkConstants.BASE_URL);
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage();
 
         assertTrue(loginPage.isLoginPageDisplayed());
         loginPage
@@ -27,7 +27,7 @@ class LoginTest extends BaseTest {
     @Test
     void invalidLoginTest() {
         navigateTo(FrameworkConstants.BASE_URL);
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage();
 
         assertTrue(loginPage.isLoginPageDisplayed());
         loginPage

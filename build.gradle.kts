@@ -12,8 +12,8 @@ repositories {
 
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-    testImplementation("org.junit.platform:junit-platform-suite-engine:1.13.1")
+    implementation("org.junit.jupiter:junit-jupiter")
+    implementation("org.junit.platform:junit-platform-suite-engine:1.13.1")
 
     // selenium
     implementation("org.seleniumhq.selenium:selenium-java:4.33.0")
